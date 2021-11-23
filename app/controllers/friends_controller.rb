@@ -1,7 +1,7 @@
 class FriendsController < ApplicationController
   before_action :set_friend, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
-
+  before_action :correct_user, only: [:edit, :update, :destroy]
   # GET /friends or /friends.json
   def index
     @friends = Friend.all
@@ -55,6 +55,11 @@ class FriendsController < ApplicationController
       format.html { redirect_to friends_url, notice: "Friend was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def correct_user
+    @friend = current_user.friends.find_by(id: params[:id])
+    redirect_to friends_path, notice: 'Not authorized to edit this friend' if @friend.nil?
   end
 
   private
