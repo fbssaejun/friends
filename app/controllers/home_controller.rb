@@ -3,5 +3,6 @@ class HomeController < ApplicationController
   end
 
   def about
+    @creator = "Anthony Kim"
   end
 end
