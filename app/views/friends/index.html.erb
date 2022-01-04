@@ -1,4 +1,6 @@
 
+<% if user_signed_in? %>
+
 <h1>Friends</h1>
 
 <table class="table table-striped table-bordered table-hover">
@@ -36,4 +38,24 @@
 <br>
 
 <%= link_to 'New Friend', new_friend_path, class:"btn btn-secondary"%>
+
+<% else %>
+
+  <div class="card text-center">
+    <div class="card-header">
+      <h1>Friends Book</h1>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Welcome!</h5>
+      <p class="card-text"><i><u>Add</u></i> friends</p>
+      <p class="card-text"><i><u>View</u></i> friends</p>
+      <p class="card-text"><i><u>Edit</u></i> friends</p>
+      <p class="card-text"><i><u>Delete</u></i> friends</p>
+
+      <%= link_to 'Friends', friends_path, class:"btn btn-primary" %>
+  </div>
+
+</div>
+
+<% end %>
 
